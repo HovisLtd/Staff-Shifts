@@ -1,0 +1,39 @@
+﻿@model IEnumerable<StaffShifts.Models.t_PTLStaff_Master_Data>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DataValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.t_PTLStaff_Master_DataCodes.DataCode)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataValue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.t_PTLStaff_Master_DataCodes.DataCode)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Recid }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Recid }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Recid })
+        </td>
+    </tr>
+}
+
+</table>

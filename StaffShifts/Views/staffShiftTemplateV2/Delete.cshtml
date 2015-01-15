@@ -1,0 +1,99 @@
+﻿@model StaffShifts.Models.t_PTLStaff_Details
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4></h4>
+    <hr />
+    @Html.HiddenFor(model => model.StatusCode)
+    @Html.HiddenFor(model => model.SiteCode)
+    @Html.HiddenFor(model => model.RevisedShiftDuration)
+    @Html.HiddenFor(model => model.RevisedBreaks)
+    @Html.HiddenFor(model => model.ReasonForChangeInShiftLength)
+    @Html.HiddenFor(model => model.Comments)
+    @Html.HiddenFor(model => model.DisiplinaryStage)
+    @Html.HiddenFor(model => model.LastChangedBy)
+    @Html.HiddenFor(model => model.LastChangedDate)
+    @Html.HiddenFor(model => model.Confirmed)
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.v_PTLStaff_MasterData_Plants.PlantDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.v_PTLStaff_MasterData_Plants.PlantDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PTLUserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PTLUserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PTLSAPName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PTLSAPName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PTLUserID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PTLUserID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SchedShiftDuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.v_PTLStaff_MasterData_Shifts.DataValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ScheduledBreaks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.v_PTLStaff_MasterData_Breaks.DataValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastChangedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastChangedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastChangedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastChangedDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8c33af0773b94d21b1f6b9d47bec06d3" Name="Diagram1" ZoomLevel="91">
+        <EntityTypeShape EntityType="HovisDWModel.t_PTLStaff_Confirmation_Audit" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HovisDWModel.t_PTLStaff_Details" Width="2.25" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HovisDWModel.t_PTLStaff_Submit_Details" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HovisDWModel.v_PTLStaff_MasterData_Breaks" Width="2.375" PointX="5.875" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HovisDWModel.v_PTLStaff_MasterData_Discipline" Width="1.5" PointX="2.875" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HovisDWModel.v_PTLStaff_MasterData_Reason" Width="2.875" PointX="6" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HovisDWModel.v_PTLStaff_MasterData_Shifts" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HovisDWModel.t_PTLStaff_Master_Data" Width="2.625" PointX="9.625" PointY="6.875" />
+        <EntityTypeShape EntityType="HovisDWModel.t_PTLStaff_Master_DataCodes" Width="1.5" PointX="7.375" PointY="7.125" />
+        <AssociationConnector Association="HovisDWModel.FK__t_PTLStaf__DataC__1F98B2C1" />
+        <EntityTypeShape EntityType="HovisDWModel.v_PTLStaff_MasterData_Plants" Width="1.5" PointX="6.25" PointY="0.75" />
+        <AssociationConnector Association="HovisDWModel.v_PTLStaff_MasterData_Plantst_PTLStaff_Details" />
+        <AssociationConnector Association="HovisDWModel.v_PTLStaff_MasterData_Breakst_PTLStaff_Details" />
+        <AssociationConnector Association="HovisDWModel.v_PTLStaff_MasterData_Breakst_PTLStaff_Details1" />
+        <AssociationConnector Association="HovisDWModel.v_PTLStaff_MasterData_Reasont_PTLStaff_Details" />
+        <AssociationConnector Association="HovisDWModel.v_PTLStaff_MasterData_Disciplinet_PTLStaff_Details" />
+        <AssociationConnector Association="HovisDWModel.v_PTLStaff_MasterData_Shiftst_PTLStaff_Details" />
+        <AssociationConnector Association="HovisDWModel.v_PTLStaff_MasterData_Shiftst_PTLStaff_Details1" />
+        <EntityTypeShape EntityType="HovisDWModel.t_PTLStaff_Master_UserSites" Width="1.5" PointX="8.625" PointY="0.75" />
+        <AssociationConnector Association="HovisDWModel.v_PTLStaff_MasterData_Plantst_PTLStaff_Master_UserSites" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

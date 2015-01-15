@@ -1,0 +1,74 @@
+﻿@model IEnumerable<StaffShifts.Models.t_PTLStaff_Details>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.v_PTLStaff_MasterData_Plants.PlantDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PTLUserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PTLSAPName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PTLUserID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SchedShiftDuration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScheduledBreaks)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.v_PTLStaff_MasterData_Plants.PlantDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PTLUserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PTLSAPName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PTLUserID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.v_PTLStaff_MasterData_Shifts.DataValue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.v_PTLStaff_MasterData_Breaks.DataValue)
+            @Html.HiddenFor(modelItem => item.Comments)
+            @Html.HiddenFor(modelItem => item.LastChangedBy)
+            @Html.HiddenFor(modelItem => item.LastChangedDate)
+            @Html.HiddenFor(modelItem => item.Confirmed)
+            @Html.HiddenFor(modelItem => item.v_PTLStaff_MasterData_Breaks.DataCode)
+            @Html.HiddenFor(modelItem => item.v_PTLStaff_MasterData_Breaks1.DataCode)
+            @Html.HiddenFor(modelItem => item.v_PTLStaff_MasterData_Reason.DataCode)
+            @Html.HiddenFor(modelItem => item.v_PTLStaff_MasterData_Discipline.DataCode)
+            @Html.HiddenFor(modelItem => item.v_PTLStaff_MasterData_Shifts.DataCode)
+            @Html.HiddenFor(modelItem => item.v_PTLStaff_MasterData_Shifts1.DataCode)
+            @Html.HiddenFor(modelItem => item.StatusCode)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Recid }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Recid }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Recid })
+        </td>
+    </tr>
+}
+
+</table>

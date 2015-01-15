@@ -1,0 +1,82 @@
+﻿@model StaffShifts.Models.t_PTLStaff_Details
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StatusCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatusCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PTLUserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PTLUserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PTLSAPName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PTLSAPName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PTLUserID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PTLUserID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SchedShiftDuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SchedShiftDuration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ScheduledBreaks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScheduledBreaks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastChangedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastChangedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastChangedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastChangedDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Recid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

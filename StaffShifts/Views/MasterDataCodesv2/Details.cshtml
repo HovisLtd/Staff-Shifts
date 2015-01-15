@@ -1,0 +1,25 @@
+﻿@model StaffShifts.Models.t_PTLStaff_Master_DataCodes
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Data Code Details</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DataCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataCode)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DataCode }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,174 @@
+﻿@model IEnumerable<StaffShifts.Models.t_PTLStaff_Details>
+
+@{
+    ViewBag.Title = "Submit Changes";
+}
+
+<h2>Index</h2>
+@using (Html.BeginForm("DataSubmit", "staffShiftTemplateV2", FormMethod.Post, new { id = "DataSubmit" }))
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-2">
+                <p> User identity:</p>
+            </div>
+            <div class="col-md-3">
+                @Html.TextBox("UserIdentity", ViewBag.UserIdentity as string, new { @class = "form-control" })
+            </div>
+            <div class="col-md-offset-1 col-md-2">
+                User Default site:
+            </div>
+            <div class="col-md-3">
+                @Html.TextBox("DefaultSite", ViewBag.DefaultSite as string, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-1 col-md-2">
+                <p> Date:</p>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class='input-group date' id='SubmitDate'>
+                        @Html.TextBox("SubmitDate", ViewBag.SubmitDate as string, new { @class = "form-control input-group date"})
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                 </div>
+            </div>
+            <div class="col-md-offset-1 col-md-2">
+                @*<p> Test Date:</p>*@
+            </div>
+            <div class='col-sm-3'>
+                @*<div class="form-group">
+                    <div class='input-group date' id='ViewDate'>
+                        <input type='text' class="form-control" data-date-format="DD/MM/YYYY" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>*@
+            </div>
+
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-1 col-md-11">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PTLUserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PTLSAPName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PTLUserID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SchedShiftDuration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RevisedShiftDuration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScheduledBreaks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RevisedBreaks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReasonForChangeInShiftLength)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DisiplinaryStage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comments)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PTLUserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PTLSAPName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PTLUserID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.v_PTLStaff_MasterData_Shifts.DataValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.v_PTLStaff_MasterData_Shifts1.DataValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.v_PTLStaff_MasterData_Breaks.DataValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.v_PTLStaff_MasterData_Breaks1.DataValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.v_PTLStaff_MasterData_Reason.DataValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.v_PTLStaff_MasterData_Discipline.DataValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comments)
+                @Html.HiddenFor(modelItem => item.LastChangedBy)
+                @Html.HiddenFor(modelItem => item.LastChangedDate)
+                @Html.HiddenFor(modelItem => item.Confirmed)
+                @Html.HiddenFor(modelItem => item.StatusCode)
+                @Html.HiddenFor(modelItem => item.SiteCode)
+
+
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditSubmit", new { id = item.Recid }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Recid }) |
+                @*@Html.ActionLink("Delete", "Delete", new { id=item.Recid })*@
+            </td>
+        </tr>
+    }
+
+</table>
+@*<script src="~/Scripts/jquery-2.1.1.js"></script>
+<script src="~/Scripts/moment.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>*@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#SubmitDate').datetimepicker({
+            format: 'DD/MM/YYYY',
+            defaultDate: new Date(),
+            pickTime: false,
+            autoclose: true
+        });
+    });
+</script>
+@*<script type="text/javascript">
+    $(document).ready(function () {
+        $('#ViewDate').datetimepicker({
+            defaultDate: new Date(),
+            autoclose: true,
+            pickTime: false
+        });
+    });
+        </script>*@
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jquery", "~/bundles/jqueryval", "~/bundles/bootstrap")
+}*@

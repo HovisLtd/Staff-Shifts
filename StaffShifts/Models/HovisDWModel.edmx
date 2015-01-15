@@ -1,0 +1,685 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HovisDWModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="t_PTLStaff_Confirmation_Audit">
+          <Key>
+            <PropertyRef Name="Recid" />
+          </Key>
+          <Property Name="Recid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SiteCode" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="ConfirmedBy" Type="varchar" MaxLength="255" />
+          <Property Name="ConfirmedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="t_PTLStaff_Details">
+          <Key>
+            <PropertyRef Name="Recid" />
+          </Key>
+          <Property Name="Recid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusCode" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="SiteCode" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="PTLUserName" Type="varchar" MaxLength="255" />
+          <Property Name="PTLSAPName" Type="varchar" MaxLength="255" />
+          <Property Name="PTLUserID" Type="varchar" MaxLength="4" />
+          <Property Name="SchedShiftDuration" Type="varchar" MaxLength="5" />
+          <Property Name="RevisedShiftDuration" Type="varchar" MaxLength="5" />
+          <Property Name="ScheduledBreaks" Type="varchar" MaxLength="5" />
+          <Property Name="RevisedBreaks" Type="varchar" MaxLength="5" />
+          <Property Name="ReasonForChangeInShiftLength" Type="varchar" MaxLength="255" />
+          <Property Name="Comments" Type="varchar" MaxLength="255" />
+          <Property Name="DisiplinaryStage" Type="varchar" MaxLength="255" />
+          <Property Name="LastChangedBy" Type="varchar" MaxLength="255" />
+          <Property Name="LastChangedDate" Type="datetime" />
+          <Property Name="Confirmed" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="t_PTLStaff_Master_Data">
+          <Key>
+            <PropertyRef Name="Recid" />
+          </Key>
+          <Property Name="Recid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DataCode" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DataValue" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="t_PTLStaff_Master_DataCodes">
+          <Key>
+            <PropertyRef Name="DataCode" />
+          </Key>
+          <Property Name="DataCode" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_PTLStaff_Master_UserSites">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserSiteCode" Type="varchar" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_PTLStaff_Submit_Details">
+          <Key>
+            <PropertyRef Name="Recid" />
+          </Key>
+          <Property Name="Recid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SiteCode" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="PTLUserName" Type="varchar" MaxLength="255" />
+          <Property Name="PTLSAPName" Type="varchar" MaxLength="255" />
+          <Property Name="PTLUserID" Type="varchar" MaxLength="4" />
+          <Property Name="SchedShiftDuration" Type="varchar" MaxLength="5" />
+          <Property Name="RevisedShiftDuration" Type="varchar" MaxLength="5" />
+          <Property Name="ScheduledBreaks" Type="varchar" MaxLength="5" />
+          <Property Name="RevisedBreaks" Type="varchar" MaxLength="5" />
+          <Property Name="ReasonForChangeInShiftLength" Type="varchar" MaxLength="255" />
+          <Property Name="Comments" Type="varchar" MaxLength="255" />
+          <Property Name="DisiplinaryStage" Type="varchar" MaxLength="255" />
+          <Property Name="SubmittedBy" Type="varchar" MaxLength="255" />
+          <Property Name="SubmittedDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'HovisDW.dbo.v_Hovis_Calendar' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_Hovis_Calendar">
+          <Key>
+            <PropertyRef Name="CalendarDate" />
+            <PropertyRef Name="FinancialYear" />
+            <PropertyRef Name="FinancialQtr" />
+            <PropertyRef Name="FinancialPeriod" />
+            <PropertyRef Name="FinancialWeek" />
+          </Key>
+          <Property Name="CalendarDate" Type="datetime" Nullable="false" />
+          <Property Name="CalendarDateChar" Type="varchar" MaxLength="30" />
+          <Property Name="FinancialYear" Type="smallint" Nullable="false" />
+          <Property Name="FinancialQtr" Type="smallint" Nullable="false" />
+          <Property Name="FinancialPeriod" Type="smallint" Nullable="false" />
+          <Property Name="FinancialWeek" Type="smallint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'HovisDW.dbo.v_PTLStaff_MasterData_Breaks' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_PTLStaff_MasterData_Breaks">
+          <Key>
+            <PropertyRef Name="DataValue" />
+          </Key>
+          <Property Name="Recid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DataCode" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DataValue" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'HovisDW.dbo.v_PTLStaff_MasterData_Discipline' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_PTLStaff_MasterData_Discipline">
+          <Key>
+            <PropertyRef Name="DataValue" />
+          </Key>
+          <Property Name="Recid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DataCode" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DataValue" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'HovisDW.dbo.v_PTLStaff_MasterData_Plants' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_PTLStaff_MasterData_Plants">
+          <Key>
+            <PropertyRef Name="Plant" />
+          </Key>
+          <Property Name="AutoIDCode" Type="int" Nullable="false" />
+          <Property Name="Plant" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="PlantDesc" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'HovisDW.dbo.v_PTLStaff_MasterData_Reason' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_PTLStaff_MasterData_Reason">
+          <Key>
+            <PropertyRef Name="DataValue" />
+          </Key>
+          <Property Name="Recid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DataCode" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DataValue" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'HovisDW.dbo.v_PTLStaff_MasterData_Shifts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_PTLStaff_MasterData_Shifts">
+          <Key>
+            <PropertyRef Name="DataValue" />
+          </Key>
+          <Property Name="Recid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DataCode" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DataValue" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__t_PTLStaf__DataC__1F98B2C1">
+          <End Role="t_PTLStaff_Master_DataCodes" Type="Self.t_PTLStaff_Master_DataCodes" Multiplicity="1" />
+          <End Role="t_PTLStaff_Master_Data" Type="Self.t_PTLStaff_Master_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_PTLStaff_Master_DataCodes">
+              <PropertyRef Name="DataCode" />
+            </Principal>
+            <Dependent Role="t_PTLStaff_Master_Data">
+              <PropertyRef Name="DataCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HovisDWModelStoreContainer">
+          <EntitySet Name="t_PTLStaff_Confirmation_Audit" EntityType="Self.t_PTLStaff_Confirmation_Audit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_PTLStaff_Details" EntityType="Self.t_PTLStaff_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_PTLStaff_Master_Data" EntityType="Self.t_PTLStaff_Master_Data" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_PTLStaff_Master_DataCodes" EntityType="Self.t_PTLStaff_Master_DataCodes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_PTLStaff_Master_UserSites" EntityType="Self.t_PTLStaff_Master_UserSites" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_PTLStaff_Submit_Details" EntityType="Self.t_PTLStaff_Submit_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="v_Hovis_Calendar" EntityType="Self.v_Hovis_Calendar" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_Hovis_Calendar].[CalendarDate] AS [CalendarDate], 
+    [v_Hovis_Calendar].[CalendarDateChar] AS [CalendarDateChar], 
+    [v_Hovis_Calendar].[FinancialYear] AS [FinancialYear], 
+    [v_Hovis_Calendar].[FinancialQtr] AS [FinancialQtr], 
+    [v_Hovis_Calendar].[FinancialPeriod] AS [FinancialPeriod], 
+    [v_Hovis_Calendar].[FinancialWeek] AS [FinancialWeek]
+    FROM [dbo].[v_Hovis_Calendar] AS [v_Hovis_Calendar]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_PTLStaff_MasterData_Breaks" EntityType="Self.v_PTLStaff_MasterData_Breaks" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_PTLStaff_MasterData_Breaks].[Recid] AS [Recid], 
+    [v_PTLStaff_MasterData_Breaks].[DataCode] AS [DataCode], 
+    [v_PTLStaff_MasterData_Breaks].[DataValue] AS [DataValue]
+    FROM [dbo].[v_PTLStaff_MasterData_Breaks] AS [v_PTLStaff_MasterData_Breaks]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_PTLStaff_MasterData_Discipline" EntityType="Self.v_PTLStaff_MasterData_Discipline" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_PTLStaff_MasterData_Discipline].[Recid] AS [Recid], 
+    [v_PTLStaff_MasterData_Discipline].[DataCode] AS [DataCode], 
+    [v_PTLStaff_MasterData_Discipline].[DataValue] AS [DataValue]
+    FROM [dbo].[v_PTLStaff_MasterData_Discipline] AS [v_PTLStaff_MasterData_Discipline]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_PTLStaff_MasterData_Plants" EntityType="Self.v_PTLStaff_MasterData_Plants" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_PTLStaff_MasterData_Plants].[AutoIDCode] AS [AutoIDCode], 
+    [v_PTLStaff_MasterData_Plants].[Plant] AS [Plant], 
+    [v_PTLStaff_MasterData_Plants].[PlantDesc] AS [PlantDesc]
+    FROM [dbo].[v_PTLStaff_MasterData_Plants] AS [v_PTLStaff_MasterData_Plants]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_PTLStaff_MasterData_Reason" EntityType="Self.v_PTLStaff_MasterData_Reason" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_PTLStaff_MasterData_Reason].[Recid] AS [Recid], 
+    [v_PTLStaff_MasterData_Reason].[DataCode] AS [DataCode], 
+    [v_PTLStaff_MasterData_Reason].[DataValue] AS [DataValue]
+    FROM [dbo].[v_PTLStaff_MasterData_Reason] AS [v_PTLStaff_MasterData_Reason]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_PTLStaff_MasterData_Shifts" EntityType="Self.v_PTLStaff_MasterData_Shifts" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_PTLStaff_MasterData_Shifts].[Recid] AS [Recid], 
+    [v_PTLStaff_MasterData_Shifts].[DataCode] AS [DataCode], 
+    [v_PTLStaff_MasterData_Shifts].[DataValue] AS [DataValue]
+    FROM [dbo].[v_PTLStaff_MasterData_Shifts] AS [v_PTLStaff_MasterData_Shifts]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__t_PTLStaf__DataC__1F98B2C1" Association="Self.FK__t_PTLStaf__DataC__1F98B2C1">
+            <End Role="t_PTLStaff_Master_DataCodes" EntitySet="t_PTLStaff_Master_DataCodes" />
+            <End Role="t_PTLStaff_Master_Data" EntitySet="t_PTLStaff_Master_Data" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HovisDWModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="t_PTLStaff_Confirmation_Audit">
+          <Key>
+            <PropertyRef Name="Recid" />
+          </Key>
+          <Property Name="Recid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SiteCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ConfirmedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ConfirmedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="t_PTLStaff_Details">
+          <Key>
+            <PropertyRef Name="Recid" />
+          </Key>
+          <Property Name="Recid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusCode" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SiteCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PTLUserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PTLSAPName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PTLUserID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="SchedShiftDuration" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RevisedShiftDuration" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ScheduledBreaks" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RevisedBreaks" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ReasonForChangeInShiftLength" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DisiplinaryStage" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastChangedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="LastChangedDate" Type="DateTime" Precision="3" />
+          <Property Name="Confirmed" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="v_PTLStaff_MasterData_Plants" Relationship="HovisDWModel.v_PTLStaff_MasterData_Plantst_PTLStaff_Details" FromRole="t_PTLStaff_Details" ToRole="v_PTLStaff_MasterData_Plants" />
+          <NavigationProperty Name="v_PTLStaff_MasterData_Breaks" Relationship="HovisDWModel.v_PTLStaff_MasterData_Breakst_PTLStaff_Details" FromRole="t_PTLStaff_Details" ToRole="v_PTLStaff_MasterData_Breaks" />
+          <NavigationProperty Name="v_PTLStaff_MasterData_Breaks1" Relationship="HovisDWModel.v_PTLStaff_MasterData_Breakst_PTLStaff_Details1" FromRole="t_PTLStaff_Details" ToRole="v_PTLStaff_MasterData_Breaks" />
+          <NavigationProperty Name="v_PTLStaff_MasterData_Reason" Relationship="HovisDWModel.v_PTLStaff_MasterData_Reasont_PTLStaff_Details" FromRole="t_PTLStaff_Details" ToRole="v_PTLStaff_MasterData_Reason" />
+          <NavigationProperty Name="v_PTLStaff_MasterData_Discipline" Relationship="HovisDWModel.v_PTLStaff_MasterData_Disciplinet_PTLStaff_Details" FromRole="t_PTLStaff_Details" ToRole="v_PTLStaff_MasterData_Discipline" />
+          <NavigationProperty Name="v_PTLStaff_MasterData_Shifts" Relationship="HovisDWModel.v_PTLStaff_MasterData_Shiftst_PTLStaff_Details" FromRole="t_PTLStaff_Details" ToRole="v_PTLStaff_MasterData_Shifts" />
+          <NavigationProperty Name="v_PTLStaff_MasterData_Shifts1" Relationship="HovisDWModel.v_PTLStaff_MasterData_Shiftst_PTLStaff_Details1" FromRole="t_PTLStaff_Details" ToRole="v_PTLStaff_MasterData_Shifts" />
+        </EntityType>
+        <EntityType Name="t_PTLStaff_Master_Data">
+          <Key>
+            <PropertyRef Name="Recid" />
+          </Key>
+          <Property Name="Recid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DataValue" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="t_PTLStaff_Master_DataCodes" Relationship="Self.FK__t_PTLStaf__DataC__1F98B2C1" FromRole="t_PTLStaff_Master_Data" ToRole="t_PTLStaff_Master_DataCodes" />
+        </EntityType>
+        <EntityType Name="t_PTLStaff_Master_DataCodes">
+          <Key>
+            <PropertyRef Name="DataCode" />
+          </Key>
+          <Property Name="DataCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="t_PTLStaff_Master_Data" Relationship="Self.FK__t_PTLStaf__DataC__1F98B2C1" FromRole="t_PTLStaff_Master_DataCodes" ToRole="t_PTLStaff_Master_Data" />
+        </EntityType>
+        <EntityType Name="t_PTLStaff_Master_UserSites">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserSiteCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="v_PTLStaff_MasterData_Plants" Relationship="HovisDWModel.v_PTLStaff_MasterData_Plantst_PTLStaff_Master_UserSites" FromRole="t_PTLStaff_Master_UserSites" ToRole="v_PTLStaff_MasterData_Plants" />
+        </EntityType>
+        <EntityType Name="t_PTLStaff_Submit_Details">
+          <Key>
+            <PropertyRef Name="Recid" />
+          </Key>
+          <Property Name="Recid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SiteCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PTLUserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PTLSAPName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PTLUserID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="SchedShiftDuration" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="RevisedShiftDuration" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="ScheduledBreaks" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="RevisedBreaks" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="ReasonForChangeInShiftLength" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DisiplinaryStage" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SubmittedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SubmittedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="v_Hovis_Calendar">
+          <Key>
+            <PropertyRef Name="CalendarDate" />
+            <PropertyRef Name="FinancialYear" />
+            <PropertyRef Name="FinancialQtr" />
+            <PropertyRef Name="FinancialPeriod" />
+            <PropertyRef Name="FinancialWeek" />
+          </Key>
+          <Property Name="CalendarDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CalendarDateChar" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FinancialYear" Type="Int16" Nullable="false" />
+          <Property Name="FinancialQtr" Type="Int16" Nullable="false" />
+          <Property Name="FinancialPeriod" Type="Int16" Nullable="false" />
+          <Property Name="FinancialWeek" Type="Int16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="v_PTLStaff_MasterData_Breaks">
+          <Key>
+            <PropertyRef Name="DataValue" />
+          </Key>
+          <Property Name="Recid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DataValue" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="t_PTLStaff_Details" Relationship="HovisDWModel.v_PTLStaff_MasterData_Breakst_PTLStaff_Details" FromRole="v_PTLStaff_MasterData_Breaks" ToRole="t_PTLStaff_Details" />
+          <NavigationProperty Name="t_PTLStaff_Details1" Relationship="HovisDWModel.v_PTLStaff_MasterData_Breakst_PTLStaff_Details1" FromRole="v_PTLStaff_MasterData_Breaks" ToRole="t_PTLStaff_Details" />
+        </EntityType>
+        <EntityType Name="v_PTLStaff_MasterData_Discipline">
+          <Key>
+            <PropertyRef Name="DataValue" />
+          </Key>
+          <Property Name="Recid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DataValue" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="t_PTLStaff_Details" Relationship="HovisDWModel.v_PTLStaff_MasterData_Disciplinet_PTLStaff_Details" FromRole="v_PTLStaff_MasterData_Discipline" ToRole="t_PTLStaff_Details" />
+        </EntityType>
+        <EntityType Name="v_PTLStaff_MasterData_Plants">
+          <Key>
+            <PropertyRef Name="Plant" />
+          </Key>
+          <Property Name="AutoIDCode" Type="Int32" Nullable="false" />
+          <Property Name="Plant" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PlantDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="t_PTLStaff_Details" Relationship="HovisDWModel.v_PTLStaff_MasterData_Plantst_PTLStaff_Details" FromRole="v_PTLStaff_MasterData_Plants" ToRole="t_PTLStaff_Details" />
+          <NavigationProperty Name="t_PTLStaff_Master_UserSites" Relationship="HovisDWModel.v_PTLStaff_MasterData_Plantst_PTLStaff_Master_UserSites" FromRole="v_PTLStaff_MasterData_Plants" ToRole="t_PTLStaff_Master_UserSites" />
+        </EntityType>
+        <EntityType Name="v_PTLStaff_MasterData_Reason">
+          <Key>
+            <PropertyRef Name="DataValue" />
+          </Key>
+          <Property Name="Recid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DataValue" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="t_PTLStaff_Details" Relationship="HovisDWModel.v_PTLStaff_MasterData_Reasont_PTLStaff_Details" FromRole="v_PTLStaff_MasterData_Reason" ToRole="t_PTLStaff_Details" />
+        </EntityType>
+        <EntityType Name="v_PTLStaff_MasterData_Shifts">
+          <Key>
+            <PropertyRef Name="DataValue" />
+          </Key>
+          <Property Name="Recid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DataValue" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="t_PTLStaff_Details" Relationship="HovisDWModel.v_PTLStaff_MasterData_Shiftst_PTLStaff_Details" FromRole="v_PTLStaff_MasterData_Shifts" ToRole="t_PTLStaff_Details" />
+          <NavigationProperty Name="t_PTLStaff_Details1" Relationship="HovisDWModel.v_PTLStaff_MasterData_Shiftst_PTLStaff_Details1" FromRole="v_PTLStaff_MasterData_Shifts" ToRole="t_PTLStaff_Details" />
+        </EntityType>
+        <Association Name="FK__t_PTLStaf__DataC__1F98B2C1">
+          <End Role="t_PTLStaff_Master_DataCodes" Type="Self.t_PTLStaff_Master_DataCodes" Multiplicity="1" />
+          <End Role="t_PTLStaff_Master_Data" Type="Self.t_PTLStaff_Master_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_PTLStaff_Master_DataCodes">
+              <PropertyRef Name="DataCode" />
+            </Principal>
+            <Dependent Role="t_PTLStaff_Master_Data">
+              <PropertyRef Name="DataCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="t_PTLStaff_Confirmation_Audit" EntityType="Self.t_PTLStaff_Confirmation_Audit" />
+          <EntitySet Name="t_PTLStaff_Details" EntityType="Self.t_PTLStaff_Details" />
+          <EntitySet Name="t_PTLStaff_Master_Data" EntityType="Self.t_PTLStaff_Master_Data" />
+          <EntitySet Name="t_PTLStaff_Master_DataCodes" EntityType="Self.t_PTLStaff_Master_DataCodes" />
+          <EntitySet Name="t_PTLStaff_Master_UserSites" EntityType="Self.t_PTLStaff_Master_UserSites" />
+          <EntitySet Name="t_PTLStaff_Submit_Details" EntityType="Self.t_PTLStaff_Submit_Details" />
+          <EntitySet Name="v_Hovis_Calendar" EntityType="Self.v_Hovis_Calendar" />
+          <EntitySet Name="v_PTLStaff_MasterData_Breaks" EntityType="Self.v_PTLStaff_MasterData_Breaks" />
+          <EntitySet Name="v_PTLStaff_MasterData_Discipline" EntityType="Self.v_PTLStaff_MasterData_Discipline" />
+          <EntitySet Name="v_PTLStaff_MasterData_Plants" EntityType="Self.v_PTLStaff_MasterData_Plants" />
+          <EntitySet Name="v_PTLStaff_MasterData_Reason" EntityType="Self.v_PTLStaff_MasterData_Reason" />
+          <EntitySet Name="v_PTLStaff_MasterData_Shifts" EntityType="Self.v_PTLStaff_MasterData_Shifts" />
+          <AssociationSet Name="FK__t_PTLStaf__DataC__1F98B2C1" Association="Self.FK__t_PTLStaf__DataC__1F98B2C1">
+            <End Role="t_PTLStaff_Master_DataCodes" EntitySet="t_PTLStaff_Master_DataCodes" />
+            <End Role="t_PTLStaff_Master_Data" EntitySet="t_PTLStaff_Master_Data" />
+          </AssociationSet>
+          <AssociationSet Name="v_PTLStaff_MasterData_Plantst_PTLStaff_Details" Association="HovisDWModel.v_PTLStaff_MasterData_Plantst_PTLStaff_Details">
+            <End Role="v_PTLStaff_MasterData_Plants" EntitySet="v_PTLStaff_MasterData_Plants" />
+            <End Role="t_PTLStaff_Details" EntitySet="t_PTLStaff_Details" />
+          </AssociationSet>
+          <AssociationSet Name="v_PTLStaff_MasterData_Plantst_PTLStaff_Master_UserSites" Association="HovisDWModel.v_PTLStaff_MasterData_Plantst_PTLStaff_Master_UserSites">
+            <End Role="v_PTLStaff_MasterData_Plants" EntitySet="v_PTLStaff_MasterData_Plants" />
+            <End Role="t_PTLStaff_Master_UserSites" EntitySet="t_PTLStaff_Master_UserSites" />
+          </AssociationSet>
+          <AssociationSet Name="v_PTLStaff_MasterData_Breakst_PTLStaff_Details" Association="HovisDWModel.v_PTLStaff_MasterData_Breakst_PTLStaff_Details">
+            <End Role="v_PTLStaff_MasterData_Breaks" EntitySet="v_PTLStaff_MasterData_Breaks" />
+            <End Role="t_PTLStaff_Details" EntitySet="t_PTLStaff_Details" />
+          </AssociationSet>
+          <AssociationSet Name="v_PTLStaff_MasterData_Breakst_PTLStaff_Details1" Association="HovisDWModel.v_PTLStaff_MasterData_Breakst_PTLStaff_Details1">
+            <End Role="v_PTLStaff_MasterData_Breaks" EntitySet="v_PTLStaff_MasterData_Breaks" />
+            <End Role="t_PTLStaff_Details" EntitySet="t_PTLStaff_Details" />
+          </AssociationSet>
+          <AssociationSet Name="v_PTLStaff_MasterData_Reasont_PTLStaff_Details" Association="HovisDWModel.v_PTLStaff_MasterData_Reasont_PTLStaff_Details">
+            <End Role="v_PTLStaff_MasterData_Reason" EntitySet="v_PTLStaff_MasterData_Reason" />
+            <End Role="t_PTLStaff_Details" EntitySet="t_PTLStaff_Details" />
+          </AssociationSet>
+          <AssociationSet Name="v_PTLStaff_MasterData_Disciplinet_PTLStaff_Details" Association="HovisDWModel.v_PTLStaff_MasterData_Disciplinet_PTLStaff_Details">
+            <End Role="v_PTLStaff_MasterData_Discipline" EntitySet="v_PTLStaff_MasterData_Discipline" />
+            <End Role="t_PTLStaff_Details" EntitySet="t_PTLStaff_Details" />
+          </AssociationSet>
+          <AssociationSet Name="v_PTLStaff_MasterData_Shiftst_PTLStaff_Details" Association="HovisDWModel.v_PTLStaff_MasterData_Shiftst_PTLStaff_Details">
+            <End Role="v_PTLStaff_MasterData_Shifts" EntitySet="v_PTLStaff_MasterData_Shifts" />
+            <End Role="t_PTLStaff_Details" EntitySet="t_PTLStaff_Details" />
+          </AssociationSet>
+          <AssociationSet Name="v_PTLStaff_MasterData_Shiftst_PTLStaff_Details1" Association="HovisDWModel.v_PTLStaff_MasterData_Shiftst_PTLStaff_Details1">
+            <End Role="v_PTLStaff_MasterData_Shifts" EntitySet="v_PTLStaff_MasterData_Shifts" />
+            <End Role="t_PTLStaff_Details" EntitySet="t_PTLStaff_Details" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="v_PTLStaff_MasterData_Plantst_PTLStaff_Details">
+          <End Type="HovisDWModel.v_PTLStaff_MasterData_Plants" Role="v_PTLStaff_MasterData_Plants" Multiplicity="1" />
+          <End Type="HovisDWModel.t_PTLStaff_Details" Role="t_PTLStaff_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="v_PTLStaff_MasterData_Plants">
+              <PropertyRef Name="Plant" />
+            </Principal>
+            <Dependent Role="t_PTLStaff_Details">
+              <PropertyRef Name="SiteCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="v_PTLStaff_MasterData_Plantst_PTLStaff_Master_UserSites">
+          <End Type="HovisDWModel.v_PTLStaff_MasterData_Plants" Role="v_PTLStaff_MasterData_Plants" Multiplicity="1" />
+          <End Type="HovisDWModel.t_PTLStaff_Master_UserSites" Role="t_PTLStaff_Master_UserSites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="v_PTLStaff_MasterData_Plants">
+              <PropertyRef Name="Plant" />
+            </Principal>
+            <Dependent Role="t_PTLStaff_Master_UserSites">
+              <PropertyRef Name="UserSiteCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="v_PTLStaff_MasterData_Breakst_PTLStaff_Details">
+          <End Type="HovisDWModel.v_PTLStaff_MasterData_Breaks" Role="v_PTLStaff_MasterData_Breaks" Multiplicity="1" />
+          <End Type="HovisDWModel.t_PTLStaff_Details" Role="t_PTLStaff_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="v_PTLStaff_MasterData_Breaks">
+              <PropertyRef Name="DataValue" />
+            </Principal>
+            <Dependent Role="t_PTLStaff_Details">
+              <PropertyRef Name="ScheduledBreaks" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="v_PTLStaff_MasterData_Breakst_PTLStaff_Details1">
+          <End Type="HovisDWModel.v_PTLStaff_MasterData_Breaks" Role="v_PTLStaff_MasterData_Breaks" Multiplicity="1" />
+          <End Type="HovisDWModel.t_PTLStaff_Details" Role="t_PTLStaff_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="v_PTLStaff_MasterData_Breaks">
+              <PropertyRef Name="DataValue" />
+            </Principal>
+            <Dependent Role="t_PTLStaff_Details">
+              <PropertyRef Name="RevisedBreaks" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="v_PTLStaff_MasterData_Reasont_PTLStaff_Details">
+          <End Type="HovisDWModel.v_PTLStaff_MasterData_Reason" Role="v_PTLStaff_MasterData_Reason" Multiplicity="1" />
+          <End Type="HovisDWModel.t_PTLStaff_Details" Role="t_PTLStaff_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="v_PTLStaff_MasterData_Reason">
+              <PropertyRef Name="DataValue" />
+            </Principal>
+            <Dependent Role="t_PTLStaff_Details">
+              <PropertyRef Name="ReasonForChangeInShiftLength" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="v_PTLStaff_MasterData_Disciplinet_PTLStaff_Details">
+          <End Type="HovisDWModel.v_PTLStaff_MasterData_Discipline" Role="v_PTLStaff_MasterData_Discipline" Multiplicity="1" />
+          <End Type="HovisDWModel.t_PTLStaff_Details" Role="t_PTLStaff_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="v_PTLStaff_MasterData_Discipline">
+              <PropertyRef Name="DataValue" />
+            </Principal>
+            <Dependent Role="t_PTLStaff_Details">
+              <PropertyRef Name="DisiplinaryStage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="v_PTLStaff_MasterData_Shiftst_PTLStaff_Details">
+          <End Type="HovisDWModel.v_PTLStaff_MasterData_Shifts" Role="v_PTLStaff_MasterData_Shifts" Multiplicity="1" />
+          <End Type="HovisDWModel.t_PTLStaff_Details" Role="t_PTLStaff_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="v_PTLStaff_MasterData_Shifts">
+              <PropertyRef Name="DataValue" />
+            </Principal>
+            <Dependent Role="t_PTLStaff_Details">
+              <PropertyRef Name="SchedShiftDuration" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="v_PTLStaff_MasterData_Shiftst_PTLStaff_Details1">
+          <End Type="HovisDWModel.v_PTLStaff_MasterData_Shifts" Role="v_PTLStaff_MasterData_Shifts" Multiplicity="1" />
+          <End Type="HovisDWModel.t_PTLStaff_Details" Role="t_PTLStaff_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="v_PTLStaff_MasterData_Shifts">
+              <PropertyRef Name="DataValue" />
+            </Principal>
+            <Dependent Role="t_PTLStaff_Details">
+              <PropertyRef Name="RevisedShiftDuration" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HovisDWModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="t_PTLStaff_Confirmation_Audit">
+            <EntityTypeMapping TypeName="HovisDWModel.t_PTLStaff_Confirmation_Audit">
+              <MappingFragment StoreEntitySet="t_PTLStaff_Confirmation_Audit">
+                <ScalarProperty Name="Recid" ColumnName="Recid" />
+                <ScalarProperty Name="SiteCode" ColumnName="SiteCode" />
+                <ScalarProperty Name="ConfirmedBy" ColumnName="ConfirmedBy" />
+                <ScalarProperty Name="ConfirmedDate" ColumnName="ConfirmedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_PTLStaff_Details">
+            <EntityTypeMapping TypeName="HovisDWModel.t_PTLStaff_Details">
+              <MappingFragment StoreEntitySet="t_PTLStaff_Details">
+                <ScalarProperty Name="Recid" ColumnName="Recid" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+                <ScalarProperty Name="SiteCode" ColumnName="SiteCode" />
+                <ScalarProperty Name="PTLUserName" ColumnName="PTLUserName" />
+                <ScalarProperty Name="PTLSAPName" ColumnName="PTLSAPName" />
+                <ScalarProperty Name="PTLUserID" ColumnName="PTLUserID" />
+                <ScalarProperty Name="SchedShiftDuration" ColumnName="SchedShiftDuration" />
+                <ScalarProperty Name="RevisedShiftDuration" ColumnName="RevisedShiftDuration" />
+                <ScalarProperty Name="ScheduledBreaks" ColumnName="ScheduledBreaks" />
+                <ScalarProperty Name="RevisedBreaks" ColumnName="RevisedBreaks" />
+                <ScalarProperty Name="ReasonForChangeInShiftLength" ColumnName="ReasonForChangeInShiftLength" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="DisiplinaryStage" ColumnName="DisiplinaryStage" />
+                <ScalarProperty Name="LastChangedBy" ColumnName="LastChangedBy" />
+                <ScalarProperty Name="LastChangedDate" ColumnName="LastChangedDate" />
+                <ScalarProperty Name="Confirmed" ColumnName="Confirmed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_PTLStaff_Master_Data">
+            <EntityTypeMapping TypeName="HovisDWModel.t_PTLStaff_Master_Data">
+              <MappingFragment StoreEntitySet="t_PTLStaff_Master_Data">
+                <ScalarProperty Name="Recid" ColumnName="Recid" />
+                <ScalarProperty Name="DataCode" ColumnName="DataCode" />
+                <ScalarProperty Name="DataValue" ColumnName="DataValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_PTLStaff_Master_DataCodes">
+            <EntityTypeMapping TypeName="HovisDWModel.t_PTLStaff_Master_DataCodes">
+              <MappingFragment StoreEntitySet="t_PTLStaff_Master_DataCodes">
+                <ScalarProperty Name="DataCode" ColumnName="DataCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_PTLStaff_Master_UserSites">
+            <EntityTypeMapping TypeName="HovisDWModel.t_PTLStaff_Master_UserSites">
+              <MappingFragment StoreEntitySet="t_PTLStaff_Master_UserSites">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserSiteCode" ColumnName="UserSiteCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_PTLStaff_Submit_Details">
+            <EntityTypeMapping TypeName="HovisDWModel.t_PTLStaff_Submit_Details">
+              <MappingFragment StoreEntitySet="t_PTLStaff_Submit_Details">
+                <ScalarProperty Name="Recid" ColumnName="Recid" />
+                <ScalarProperty Name="SiteCode" ColumnName="SiteCode" />
+                <ScalarProperty Name="PTLUserName" ColumnName="PTLUserName" />
+                <ScalarProperty Name="PTLSAPName" ColumnName="PTLSAPName" />
+                <ScalarProperty Name="PTLUserID" ColumnName="PTLUserID" />
+                <ScalarProperty Name="SchedShiftDuration" ColumnName="SchedShiftDuration" />
+                <ScalarProperty Name="RevisedShiftDuration" ColumnName="RevisedShiftDuration" />
+                <ScalarProperty Name="ScheduledBreaks" ColumnName="ScheduledBreaks" />
+                <ScalarProperty Name="RevisedBreaks" ColumnName="RevisedBreaks" />
+                <ScalarProperty Name="ReasonForChangeInShiftLength" ColumnName="ReasonForChangeInShiftLength" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="DisiplinaryStage" ColumnName="DisiplinaryStage" />
+                <ScalarProperty Name="SubmittedBy" ColumnName="SubmittedBy" />
+                <ScalarProperty Name="SubmittedDate" ColumnName="SubmittedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_Hovis_Calendar">
+            <EntityTypeMapping TypeName="HovisDWModel.v_Hovis_Calendar">
+              <MappingFragment StoreEntitySet="v_Hovis_Calendar">
+                <ScalarProperty Name="CalendarDate" ColumnName="CalendarDate" />
+                <ScalarProperty Name="CalendarDateChar" ColumnName="CalendarDateChar" />
+                <ScalarProperty Name="FinancialYear" ColumnName="FinancialYear" />
+                <ScalarProperty Name="FinancialQtr" ColumnName="FinancialQtr" />
+                <ScalarProperty Name="FinancialPeriod" ColumnName="FinancialPeriod" />
+                <ScalarProperty Name="FinancialWeek" ColumnName="FinancialWeek" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_PTLStaff_MasterData_Breaks">
+            <EntityTypeMapping TypeName="HovisDWModel.v_PTLStaff_MasterData_Breaks">
+              <MappingFragment StoreEntitySet="v_PTLStaff_MasterData_Breaks">
+                <ScalarProperty Name="Recid" ColumnName="Recid" />
+                <ScalarProperty Name="DataCode" ColumnName="DataCode" />
+                <ScalarProperty Name="DataValue" ColumnName="DataValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_PTLStaff_MasterData_Discipline">
+            <EntityTypeMapping TypeName="HovisDWModel.v_PTLStaff_MasterData_Discipline">
+              <MappingFragment StoreEntitySet="v_PTLStaff_MasterData_Discipline">
+                <ScalarProperty Name="Recid" ColumnName="Recid" />
+                <ScalarProperty Name="DataCode" ColumnName="DataCode" />
+                <ScalarProperty Name="DataValue" ColumnName="DataValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_PTLStaff_MasterData_Plants">
+            <EntityTypeMapping TypeName="HovisDWModel.v_PTLStaff_MasterData_Plants">
+              <MappingFragment StoreEntitySet="v_PTLStaff_MasterData_Plants">
+                <ScalarProperty Name="AutoIDCode" ColumnName="AutoIDCode" />
+                <ScalarProperty Name="Plant" ColumnName="Plant" />
+                <ScalarProperty Name="PlantDesc" ColumnName="PlantDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_PTLStaff_MasterData_Reason">
+            <EntityTypeMapping TypeName="HovisDWModel.v_PTLStaff_MasterData_Reason">
+              <MappingFragment StoreEntitySet="v_PTLStaff_MasterData_Reason">
+                <ScalarProperty Name="Recid" ColumnName="Recid" />
+                <ScalarProperty Name="DataCode" ColumnName="DataCode" />
+                <ScalarProperty Name="DataValue" ColumnName="DataValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_PTLStaff_MasterData_Shifts">
+            <EntityTypeMapping TypeName="HovisDWModel.v_PTLStaff_MasterData_Shifts">
+              <MappingFragment StoreEntitySet="v_PTLStaff_MasterData_Shifts">
+                <ScalarProperty Name="Recid" ColumnName="Recid" />
+                <ScalarProperty Name="DataCode" ColumnName="DataCode" />
+                <ScalarProperty Name="DataValue" ColumnName="DataValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
