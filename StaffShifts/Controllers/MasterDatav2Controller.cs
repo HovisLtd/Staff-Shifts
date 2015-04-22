@@ -15,6 +15,7 @@ namespace StaffShifts.Controllers
         private Entities db = new Entities();
 
         // GET: /MasterDatav2/
+        [Authorize(Roles = "Admin,SScanEdit")]
         public ActionResult Index()
         {
             var t_ptlstaff_master_data = db.t_PTLStaff_Master_Data.Include(t => t.t_PTLStaff_Master_DataCodes);
@@ -22,6 +23,7 @@ namespace StaffShifts.Controllers
         }
 
         // GET: /MasterDatav2/Details/5
+        [Authorize(Roles = "Admin,SScanEdit")]
         public ActionResult Details(long? id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace StaffShifts.Controllers
         }
 
         // GET: /MasterDatav2/Create
+        [Authorize(Roles = "SScanEdit")]
         public ActionResult Create()
         {
             ViewBag.DataCode = new SelectList(db.t_PTLStaff_Master_DataCodes, "DataCode", "DataCode");
@@ -48,7 +51,8 @@ namespace StaffShifts.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Recid,DataCode,DataValue")] t_PTLStaff_Master_Data t_ptlstaff_master_data)
+        [Authorize(Roles = "SScanEdit")]
+        public ActionResult Create([Bind(Include = "Recid,DataCode,DataValue")] t_PTLStaff_Master_Data t_ptlstaff_master_data)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +66,7 @@ namespace StaffShifts.Controllers
         }
 
         // GET: /MasterDatav2/Edit/5
+        [Authorize(Roles = "SScanEdit")]
         public ActionResult Edit(long? id)
         {
             if (id == null)
@@ -82,7 +87,8 @@ namespace StaffShifts.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Recid,DataCode,DataValue")] t_PTLStaff_Master_Data t_ptlstaff_master_data)
+        [Authorize(Roles = "SScanEdit")]
+        public ActionResult Edit([Bind(Include = "Recid,DataCode,DataValue")] t_PTLStaff_Master_Data t_ptlstaff_master_data)
         {
             if (ModelState.IsValid)
             {
@@ -95,6 +101,7 @@ namespace StaffShifts.Controllers
         }
 
         // GET: /MasterDatav2/Delete/5
+        [Authorize(Roles = "SScanEdit")]
         public ActionResult Delete(long? id)
         {
             if (id == null)
@@ -112,6 +119,7 @@ namespace StaffShifts.Controllers
         // POST: /MasterDatav2/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SScanEdit")]
         public ActionResult DeleteConfirmed(long id)
         {
             t_PTLStaff_Master_Data t_ptlstaff_master_data = db.t_PTLStaff_Master_Data.Find(id);

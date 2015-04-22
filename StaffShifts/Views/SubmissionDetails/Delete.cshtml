@@ -1,0 +1,136 @@
+﻿@model StaffShifts.Models.t_PTLStaff_Submit_Details
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>t_PTLStaff_Submit_Details</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.SiteCode)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.SiteCode)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PTLUserName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PTLUserName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PTLSAPName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PTLSAPName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PTLUserID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PTLUserID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.SchedShiftDuration)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.SchedShiftDuration)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.RevisedShiftDuration)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RevisedShiftDuration)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ScheduledBreaks)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ScheduledBreaks)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.RevisedBreaks)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RevisedBreaks)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ReasonForChangeInShiftLength)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ReasonForChangeInShiftLength)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Comments)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Comments)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DisiplinaryStage)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DisiplinaryStage)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.SubmittedBy)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.SubmittedBy)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.SubmittedDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.SubmittedDate)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

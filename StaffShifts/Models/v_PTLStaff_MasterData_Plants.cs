@@ -18,6 +18,7 @@ namespace StaffShifts.Models
         {
             this.t_PTLStaff_Details = new HashSet<t_PTLStaff_Details>();
             this.t_PTLStaff_Master_UserSites = new HashSet<t_PTLStaff_Master_UserSites>();
+            this.t_PTLStaff_Submit_Details = new HashSet<t_PTLStaff_Submit_Details>();
         }
     
         public int AutoIDCode { get; set; }
@@ -26,5 +27,6 @@ namespace StaffShifts.Models
     
         public virtual ICollection<t_PTLStaff_Details> t_PTLStaff_Details { get; set; }
         public virtual ICollection<t_PTLStaff_Master_UserSites> t_PTLStaff_Master_UserSites { get; set; }
+        public virtual ICollection<t_PTLStaff_Submit_Details> t_PTLStaff_Submit_Details { get; set; }
     }
 }

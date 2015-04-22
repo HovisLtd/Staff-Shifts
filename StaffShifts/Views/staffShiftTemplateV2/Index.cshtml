@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create",null, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
@@ -64,9 +64,9 @@
             @Html.HiddenFor(modelItem => item.StatusCode)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Recid }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Recid }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Recid })
+            @Html.ActionLink("Edit", "Edit", new { id = item.Recid }, new { @class = "btn btn-success btn-xs" }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Recid }, new { @class = "btn btn-success btn-xs" }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Recid }, new { @class = "btn btn-danger btn-xs" })
         </td>
     </tr>
 }

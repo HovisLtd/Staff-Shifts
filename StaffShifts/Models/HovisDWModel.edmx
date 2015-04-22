@@ -297,6 +297,7 @@ warning 6002: The table/view 'HovisDW.dbo.v_PTLStaff_MasterData_Shifts' does not
           <Property Name="DisiplinaryStage" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="SubmittedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="SubmittedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="v_PTLStaff_MasterData_Plants" Relationship="HovisDWModel.v_PTLStaff_MasterData_Plantst_PTLStaff_Submit_Details" FromRole="t_PTLStaff_Submit_Details" ToRole="v_PTLStaff_MasterData_Plants" />
         </EntityType>
         <EntityType Name="v_Hovis_Calendar">
           <Key>
@@ -341,6 +342,7 @@ warning 6002: The table/view 'HovisDW.dbo.v_PTLStaff_MasterData_Shifts' does not
           <Property Name="PlantDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="t_PTLStaff_Details" Relationship="HovisDWModel.v_PTLStaff_MasterData_Plantst_PTLStaff_Details" FromRole="v_PTLStaff_MasterData_Plants" ToRole="t_PTLStaff_Details" />
           <NavigationProperty Name="t_PTLStaff_Master_UserSites" Relationship="HovisDWModel.v_PTLStaff_MasterData_Plantst_PTLStaff_Master_UserSites" FromRole="v_PTLStaff_MasterData_Plants" ToRole="t_PTLStaff_Master_UserSites" />
+          <NavigationProperty Name="t_PTLStaff_Submit_Details" Relationship="HovisDWModel.v_PTLStaff_MasterData_Plantst_PTLStaff_Submit_Details" FromRole="v_PTLStaff_MasterData_Plants" ToRole="t_PTLStaff_Submit_Details" />
         </EntityType>
         <EntityType Name="v_PTLStaff_MasterData_Reason">
           <Key>
@@ -421,6 +423,10 @@ warning 6002: The table/view 'HovisDW.dbo.v_PTLStaff_MasterData_Shifts' does not
           <AssociationSet Name="v_PTLStaff_MasterData_Shiftst_PTLStaff_Details1" Association="HovisDWModel.v_PTLStaff_MasterData_Shiftst_PTLStaff_Details1">
             <End Role="v_PTLStaff_MasterData_Shifts" EntitySet="v_PTLStaff_MasterData_Shifts" />
             <End Role="t_PTLStaff_Details" EntitySet="t_PTLStaff_Details" />
+          </AssociationSet>
+          <AssociationSet Name="v_PTLStaff_MasterData_Plantst_PTLStaff_Submit_Details" Association="HovisDWModel.v_PTLStaff_MasterData_Plantst_PTLStaff_Submit_Details">
+            <End Role="v_PTLStaff_MasterData_Plants" EntitySet="v_PTLStaff_MasterData_Plants" />
+            <End Role="t_PTLStaff_Submit_Details" EntitySet="t_PTLStaff_Submit_Details" />
           </AssociationSet>
         </EntityContainer>
         <Association Name="v_PTLStaff_MasterData_Plantst_PTLStaff_Details">
@@ -516,6 +522,18 @@ warning 6002: The table/view 'HovisDW.dbo.v_PTLStaff_MasterData_Shifts' does not
             </Principal>
             <Dependent Role="t_PTLStaff_Details">
               <PropertyRef Name="RevisedShiftDuration" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="v_PTLStaff_MasterData_Plantst_PTLStaff_Submit_Details">
+          <End Type="HovisDWModel.v_PTLStaff_MasterData_Plants" Role="v_PTLStaff_MasterData_Plants" Multiplicity="1" />
+          <End Type="HovisDWModel.t_PTLStaff_Submit_Details" Role="t_PTLStaff_Submit_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="v_PTLStaff_MasterData_Plants">
+              <PropertyRef Name="Plant" />
+            </Principal>
+            <Dependent Role="t_PTLStaff_Submit_Details">
+              <PropertyRef Name="SiteCode" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

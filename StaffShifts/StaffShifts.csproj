@@ -104,6 +104,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -180,6 +186,7 @@
     <Compile Include="Controllers\MasterDataCodesv2Controller.cs" />
     <Compile Include="Controllers\MasterDatav2Controller.cs" />
     <Compile Include="Controllers\staffShiftTemplateV2Controller.cs" />
+    <Compile Include="Controllers\SubmissionDetailsController.cs" />
     <Compile Include="Controllers\UserSitesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -246,6 +253,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\ShiftsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-datepicker.css" />
@@ -254,6 +262,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\img\staff.png" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -396,6 +406,13 @@
     <Content Include="Views\staffShiftTemplateV2\EditSubmit.cshtml" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
+    <Content Include="Views\SubmissionDetails\Create.cshtml" />
+    <Content Include="Views\SubmissionDetails\Delete.cshtml" />
+    <Content Include="Views\SubmissionDetails\Details.cshtml" />
+    <Content Include="Views\SubmissionDetails\Edit.cshtml" />
+    <Content Include="Views\SubmissionDetails\Index.cshtml" />
+    <Content Include="Views\SubmissionDetails\IndexSearch.cshtml" />
+    <Content Include="Views\staffShiftTemplateV2\IndexSubmit - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

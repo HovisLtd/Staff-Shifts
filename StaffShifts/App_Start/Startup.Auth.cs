@@ -33,15 +33,19 @@ namespace StaffShifts
             //   appId: "",
             //   appSecret: "");
 
-            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            {
-                ClientId = "602303626389-si5hmuietpr0f3kmhc14ietpqm7pevqd.apps.googleusercontent.com",
-                ClientSecret = "13Ozg4aBRfaCEeETy2DhnhIB"
-            });
-            //below details are for local host
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions
             //{
-            //    ClientId = "602303626389-tofaou6b69voruphqcr75l4ump5mvatf.apps.googleusercontent.com",
-            //    ClientSecret = "yhneuQLyyfkn3LahDzJiBHdU"
+            //    ClientId = "602303626389-ksfkji12i5p5pg1vgac350lfo9aqmn99.apps.googleusercontent.com",
+            //    ClientSecret = "nt2TAvMdnWWuRM25jePPtCyO"
+            //});
+            //below details are for local host
+            {
+                ClientId = "602303626389-tofaou6b69voruphqcr75l4ump5mvatf.apps.googleusercontent.com",
+                ClientSecret = "yhneuQLyyfkn3LahDzJiBHdU"
+            });
+            //{
+            //    ClientId = "745758001127-84v8k3eetk0c8df56f5u6oj4rk3atnbu.apps.googleusercontent.com",
+            //    ClientSecret = "efATD24XoTZQPilgAmSGhis6"
             //});
         }
     }

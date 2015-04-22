@@ -2,28 +2,44 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>Staff Shift recording</h1>
-    <p class="lead">This application can be used to record staff shift information by site.</p>
-    @*<p><a href="http://asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a></p>*@
-</div>
+<div class="content-wrap app-home">
+    </br>
+   
+    <div class="row">
+        <div class="col-md-offset-3 col-md-7">
+            <section class="panel">
+                <div class="panel-body" style="min-height: 250px">
+                    <div class="text-center">
+                        <img src="/Content/img/staff.png" alt="TOPS" width="200" />
+                    </div>
+                    </br>
+                    <div class="table-responsive">
+                        <table class="table" data-sortable="" data-sortable-initialized="true">
+                            <tr>
+                                <th>
+                                    Site
+                                </th>
+                                <th>
+                                    Last Submitted
+                                </th>
+                            </tr>
+                            @foreach (var Item in (ViewData["SubmitDetails"] as List<StaffShifts.ViewModels.LastDateViewModel>))
+                            {
+                                <tr>
+                                    <th>
+                                        @Html.DisplayFor(modelItem =>@Item.Site)
+                                    </th>
+                                    <th>
+                                        @String.Format("{0:d}", Item.LastDate)
+                                    </th>
+                                </tr>
+                            }
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            Shift information templates can be used to record standard shift information and then variances against these can be recorded on a week by week basis.
-        </p>
-        @*<p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>*@
-    </div>
-    <div class="col-md-4">
-        <h2>Shift templates</h2>
-        <p>firstly create a template that hold you standard shift information be employee.</p>
-        @*<p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>*@
-    </div>
-    <div class="col-md-4">
-        <h2>Record variances</h2>
-        <p>If an employee has not worked his planned shift this can be recorded as a variance.</p>
-        @*<p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>*@
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+
     </div>
 </div>

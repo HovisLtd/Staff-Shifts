@@ -28,5 +28,7 @@ namespace StaffShifts.Models
         public string DisiplinaryStage { get; set; }
         public string SubmittedBy { get; set; }
         public Nullable<System.DateTime> SubmittedDate { get; set; }
+    
+        public virtual v_PTLStaff_MasterData_Plants v_PTLStaff_MasterData_Plants { get; set; }
     }
 }

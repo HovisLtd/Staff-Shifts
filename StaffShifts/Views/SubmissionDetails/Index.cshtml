@@ -1,0 +1,108 @@
+﻿@model PagedList.IPagedList<StaffShifts.Models.t_PTLStaff_Submit_Details>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="content-wrap no-padding">
+    <section class="panel panel-info">
+        <header class="panel-heading">Submitted Data</header>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table" data-sortable="" data-sortable-initialized="true">
+
+                    <tr>
+                        <th>
+                            <small>@Html.DisplayNameFor(model => model.First().SiteCode)</small>
+                        </th>
+                        <th>
+                            <small>@Html.DisplayNameFor(model => model.First().PTLUserName)</small>
+</th>
+                        <th>
+                            <small>@Html.DisplayNameFor(model => model.First().SchedShiftDuration)</small>
+</th>
+                        <th>
+                            <small>@Html.DisplayNameFor(model => model.First().RevisedShiftDuration)</small>
+</th>
+                        <th>
+                            <small>@Html.DisplayNameFor(model => model.First().ScheduledBreaks)</small>
+</th>
+                        <th>
+                            <small>@Html.DisplayNameFor(model => model.First().RevisedBreaks)</small>
+</th>
+                        <th>
+                            <small>@Html.DisplayNameFor(model => model.First().ReasonForChangeInShiftLength)</small>
+</th>
+                        <th>
+                            <small>@Html.DisplayNameFor(model => model.First().Comments)</small>
+</th>
+                        <th>
+                            <small>@Html.DisplayNameFor(model => model.First().DisiplinaryStage)</small>
+</th>
+                        <th>
+                            <small>@Html.DisplayNameFor(model => model.First().SubmittedBy)</small>
+</th>
+                        <th>
+                            <small>@Html.DisplayNameFor(model => model.First().SubmittedDate)</small>
+</th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <small>@Html.DisplayFor(modelItem => item.SiteCode)</small>
+                            </td>
+                            <td>
+                                <small>@Html.DisplayFor(modelItem => item.PTLUserName)</small>
+                                @Html.HiddenFor(modelItem => item.PTLSAPName)
+                                @Html.HiddenFor(modelItem => item.PTLUserID)
+                            </td>
+                            <td>
+                                <small>@Html.DisplayFor(modelItem => item.SchedShiftDuration)</small>
+                            </td>
+                            <td>
+                                <small>@Html.DisplayFor(modelItem => item.RevisedShiftDuration)</small>
+                            </td>
+                            <td>
+                                <small>@Html.DisplayFor(modelItem => item.ScheduledBreaks)</small>
+                            </td>
+                            <td>
+                                <small>@Html.DisplayFor(modelItem => item.RevisedBreaks)</small>
+                            </td>
+                            <td>
+                                <small>@Html.DisplayFor(modelItem => item.ReasonForChangeInShiftLength)</small>
+                            </td>
+                            <td>
+                                <small>@Html.DisplayFor(modelItem => item.Comments)</small>
+                            </td>
+                            <td>
+                                <small>@Html.DisplayFor(modelItem => item.DisiplinaryStage)</small>
+                            </td>
+                            <td>
+                                <small>@Html.DisplayFor(modelItem => item.SubmittedBy)</small>
+                            </td>
+                            <td>
+                                <small>@Html.DisplayFor(modelItem => item.SubmittedDate)</small>
+                            </td>
+                            <td>
+                                @*@Html.ActionLink("Edit", "Edit", new { id=item.Recid }) |*@
+                                <small>@Html.ActionLink("Details", "Details", new { id = item.Recid }, new { @class = "btn btn-success btn-xs" })</small>
+                                @*@Html.ActionLink("Delete", "Delete", new { id=item.Recid })*@
+                            </td>
+                        </tr>
+                    }
+
+
+                </table>
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+            </div>
+        </div>
+    </section>
+</div>
+
+ 

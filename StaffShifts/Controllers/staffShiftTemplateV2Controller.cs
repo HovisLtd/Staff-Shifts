@@ -17,7 +17,7 @@ namespace StaffShifts.Controllers
         private Entities db = new Entities();
 
         // GET: staffShiftTemplateV2
-        //[Authorize(Roles = "SScanEdit")]
+        [Authorize(Roles = "SScanEdit")]
         public ActionResult Index()
         {
             string UserIdentity = User.Identity.Name;
@@ -42,6 +42,7 @@ namespace StaffShifts.Controllers
                 .Where(c => c.SiteCode == DefaultSite));
         }
 
+        [Authorize(Roles = "SScanEdit")]
         public ActionResult IndexSubmit()
         {
             string UserIdentity = User.Identity.Name;
@@ -77,6 +78,7 @@ namespace StaffShifts.Controllers
         }
 
         // GET: staffShiftTemplateV2/Details/5
+        [Authorize(Roles = "SScanEdit")]
         public ActionResult Details(long? id)
         {
             if (id == null)
@@ -92,6 +94,7 @@ namespace StaffShifts.Controllers
         }
 
         // GET: staffShiftTemplateV2/Create
+        [Authorize(Roles = "SScanEdit")]
         public ActionResult Create()
         {
             ViewBag.SiteCode = new SelectList(db.v_PTLStaff_MasterData_Plants, "Plant", "PlantDesc");
@@ -109,6 +112,7 @@ namespace StaffShifts.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SScanEdit")]
         public ActionResult Create([Bind(Include = "Recid,StatusCode,SiteCode,PTLUserName,PTLSAPName,PTLUserID,SchedShiftDuration,RevisedShiftDuration,ScheduledBreaks,RevisedBreaks,ReasonForChangeInShiftLength,Comments,DisiplinaryStage,LastChangedBy,LastChangedDate,Confirmed")] t_PTLStaff_Details t_PTLStaff_Details)
         {
             string UserIdentity = "";
@@ -140,6 +144,7 @@ namespace StaffShifts.Controllers
         }
 
         // GET: staffShiftTemplateV2/Edit/5
+        [Authorize(Roles = "SScanEdit")]
         public ActionResult Edit(long? id)
         {
             if (id == null)
@@ -166,6 +171,7 @@ namespace StaffShifts.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SScanEdit")]
         public ActionResult Edit([Bind(Include = "Recid,StatusCode,SiteCode,PTLUserName,PTLSAPName,PTLUserID,SchedShiftDuration,RevisedShiftDuration,ScheduledBreaks,RevisedBreaks,ReasonForChangeInShiftLength,Comments,DisiplinaryStage,LastChangedBy,LastChangedDate,Confirmed")] t_PTLStaff_Details t_PTLStaff_Details)
         {
             string UserIdentity = "";
@@ -191,6 +197,7 @@ namespace StaffShifts.Controllers
         }
 
         // GET: staffShiftTemplateV2/EditSubmit/5
+        [Authorize(Roles = "SScanEdit")]
         public ActionResult EditSubmit(long? id)
         {
             if (id == null)
@@ -217,6 +224,7 @@ namespace StaffShifts.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SScanEdit")]
         public ActionResult EditSubmit([Bind(Include = "Recid,StatusCode,SiteCode,PTLUserName,PTLSAPName,PTLUserID,SchedShiftDuration,RevisedShiftDuration,ScheduledBreaks,RevisedBreaks,ReasonForChangeInShiftLength,Comments,DisiplinaryStage,LastChangedBy,LastChangedDate,Confirmed")] t_PTLStaff_Details t_ptlstaff_details)
         {
             string UserIdentity = "";
@@ -259,6 +267,7 @@ namespace StaffShifts.Controllers
 
 
         // GET: staffShiftTemplateV2/Delete/5
+        [Authorize(Roles = "SScanEdit")]
         public ActionResult Delete(long? id)
         {
             if (id == null)
@@ -276,6 +285,7 @@ namespace StaffShifts.Controllers
         // POST: staffShiftTemplateV2/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SScanEdit")]
         public ActionResult DeleteConfirmed(long id)
         {
             t_PTLStaff_Details t_PTLStaff_Details = db.t_PTLStaff_Details.Find(id);
@@ -286,6 +296,7 @@ namespace StaffShifts.Controllers
 
         [HttpPost, ActionName("DataSubmit")]
         //[Authorize(Roles = "SScanEdit")]
+        [Authorize(Roles = "SScanEdit")]
         public ActionResult DataSubmit(string SubmitDate, string UserIdentity, string DefaultSite)
         {
             DateTime SubmitDateFormat = Convert.ToDateTime(SubmitDate);
@@ -334,7 +345,7 @@ namespace StaffShifts.Controllers
             db.SaveChanges();
 
             //ViewBag.SubMessage = "Your data has been submitted";
-            return RedirectToAction("IndexSubmit", "staffShiftTemplateV2");
+            return RedirectToAction("Index", "SubmissionDetails");
         }
 
 

@@ -36,6 +36,7 @@ namespace StaffShifts.Controllers
         }
 
         // GET: /MasterDataCodesv2/Create
+        [Authorize(Roles = "SScanEdit")]
         public ActionResult Create()
         {
             return View();
@@ -46,7 +47,8 @@ namespace StaffShifts.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="DataCode")] t_PTLStaff_Master_DataCodes t_ptlstaff_master_datacodes)
+        [Authorize(Roles = "SScanEdit")]
+        public ActionResult Create([Bind(Include = "DataCode")] t_PTLStaff_Master_DataCodes t_ptlstaff_master_datacodes)
         {
             if (ModelState.IsValid)
             {
@@ -59,6 +61,7 @@ namespace StaffShifts.Controllers
         }
 
         // GET: /MasterDataCodesv2/Edit/5
+        [Authorize(Roles = "SScanEdit")]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -78,7 +81,8 @@ namespace StaffShifts.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="DataCode")] t_PTLStaff_Master_DataCodes t_ptlstaff_master_datacodes)
+        [Authorize(Roles = "SScanEdit")]
+        public ActionResult Edit([Bind(Include = "DataCode")] t_PTLStaff_Master_DataCodes t_ptlstaff_master_datacodes)
         {
             if (ModelState.IsValid)
             {
@@ -90,6 +94,7 @@ namespace StaffShifts.Controllers
         }
 
         // GET: /MasterDataCodesv2/Delete/5
+        [Authorize(Roles = "SScanEdit")]
         public ActionResult Delete(string id)
         {
             if (id == null)
@@ -107,6 +112,7 @@ namespace StaffShifts.Controllers
         // POST: /MasterDataCodesv2/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SScanEdit")]
         public ActionResult DeleteConfirmed(string id)
         {
             t_PTLStaff_Master_DataCodes t_ptlstaff_master_datacodes = db.t_PTLStaff_Master_DataCodes.Find(id);

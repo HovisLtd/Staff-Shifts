@@ -21,10 +21,10 @@ namespace StaffShifts.Models
     {
     }
 
-    //[MetadataType(typeof(TemplateMetaData))]
-    //public partial class t_Scorecard_Master_Template
-    //{
-    //}
+    [MetadataType(typeof(SubmittedDataMetadata))]
+    public partial class t_PTLStaff_Submit_Details
+    {
+    }
 
     //[MetadataType(typeof(ScorecardDetailsMetaData))]
     //public partial class t_Scorecard_Details

@@ -38,10 +38,18 @@
                             <li>@Html.ActionLink("Sites", "Index", "UserSites")</li>
                         </ul>
                     </li>
-
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            History <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Last 7 Days", "Index", "SubmissionDetails")</li>
+                            <li>@Html.ActionLink("Search", "IndexSearch", "SubmissionDetails")</li>
+                        </ul>
+                    </li>
+                        </ul>
+                        @Html.Partial("_LoginPartial")
+</div>
         </div>
     </div>
     <div class="container body-content">

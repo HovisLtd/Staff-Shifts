@@ -26,6 +26,7 @@
         <AssociationConnector Association="HovisDWModel.v_PTLStaff_MasterData_Disciplinet_PTLStaff_Details" />
         <AssociationConnector Association="HovisDWModel.v_PTLStaff_MasterData_Shiftst_PTLStaff_Details" />
         <AssociationConnector Association="HovisDWModel.v_PTLStaff_MasterData_Shiftst_PTLStaff_Details1" />
+        <AssociationConnector Association="HovisDWModel.v_PTLStaff_MasterData_Plantst_PTLStaff_Submit_Details" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
