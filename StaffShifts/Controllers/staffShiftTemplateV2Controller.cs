@@ -97,7 +97,17 @@ namespace StaffShifts.Controllers
         [Authorize(Roles = "SScanEdit")]
         public ActionResult Create()
         {
-            ViewBag.SiteCode = new SelectList(db.v_PTLStaff_MasterData_Plants, "Plant", "PlantDesc");
+            int DefaultSite = 999;
+            string UserIdentity = User.Identity.Name;
+            // Get the default site for the user
+            IQueryable<t_PTLStaff_Master_UserSites> userSites = db.t_PTLStaff_Master_UserSites
+                .Where(c => c.UserName == UserIdentity);
+            userSites = userSites.Take(1);
+            foreach (var DefaultSites in userSites)
+            {
+                DefaultSite = Convert.ToInt32(DefaultSites.UserSiteCode);
+            }
+            ViewBag.SiteCode = new SelectList(db.v_PTLStaff_MasterData_Plants, "Plant", "PlantDesc", DefaultSite);
             ViewBag.ScheduledBreaks = new SelectList(db.v_PTLStaff_MasterData_Breaks, "DataValue", "DataValue");
             ViewBag.RevisedBreaks = new SelectList(db.v_PTLStaff_MasterData_Breaks, "DataValue", "DataValue");
             ViewBag.ReasonForChangeInShiftLength = new SelectList(db.v_PTLStaff_MasterData_Reason, "DataValue", "DataValue");
