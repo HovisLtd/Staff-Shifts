@@ -310,14 +310,16 @@ namespace StaffShifts.Controllers
         public ActionResult DataSubmit(string SubmitDate, string UserIdentity, string DefaultSite)
         {
             DateTime SubmitDateFormat = Convert.ToDateTime(SubmitDate);
-            //Check to see if data already exists
-            //var deletescorecardrows =
-            //    from scorecarddetails in db.t_Scorecard_Details
-            //    where (scorecarddetails.Year == Convert.ToInt32(FinYear) && scorecarddetails.Week == Convert.ToInt32(FinWeek) && scorecarddetails.SiteCode == DefaultSite)
-            //    select scorecarddetails;
 
-            //IQueryable<t_PTLStaff_Submit_Details> deletestaffshiftrows = db.t_PTLStaff_Submit_Details
-            //    .Where(c => c.SiteCode == DefaultSite);
+            // this writes an audit record
+            var AuditRecord = new t_PTLStaff_Confirmation_Audit();
+
+            AuditRecord.SiteCode = DefaultSite;
+            AuditRecord.ConfirmedBy = UserIdentity;
+            AuditRecord.ConfirmedDate = DateTime.Now;
+
+            db.t_PTLStaff_Confirmation_Audit.Add(AuditRecord);
+            db.SaveChanges();
 
             IQueryable<t_PTLStaff_Submit_Details> deletestaffshiftrows = db.t_PTLStaff_Submit_Details
                 .Where(c => c.SiteCode == DefaultSite && c.SubmittedDate == SubmitDateFormat);
@@ -353,6 +355,9 @@ namespace StaffShifts.Controllers
                 db.t_PTLStaff_Submit_Details.Add(Newdetail);
             }
             db.SaveChanges();
+
+
+
 
             //ViewBag.SubMessage = "Your data has been submitted";
             return RedirectToAction("Index", "SubmissionDetails");

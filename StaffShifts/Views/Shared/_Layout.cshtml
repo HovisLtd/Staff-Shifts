@@ -27,24 +27,33 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Submit data", "IndexSubmit", "StaffShiftTemplateV2")</li>
+                    @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("SScanEdit")))
+                    {
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             Master Data <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Site templates", "Index", "StaffShiftTemplateV2")</li>
+                             @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                             {
                             <li>@Html.ActionLink("Major cat", "Index", "MasterDataCodesv2")</li>
                             <li>@Html.ActionLink("Minor cat", "Index", "MasterDatav2")</li>
                             <li>@Html.ActionLink("Sites", "Index", "UserSites")</li>
+                            <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
+                            <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
+                             }
                         </ul>
                     </li>
+                    }
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             History <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Last 7 Days", "Index", "SubmissionDetails")</li>
-                            <li>@Html.ActionLink("Search", "IndexSearch", "SubmissionDetails")</li>
+                            <li>@Html.ActionLink("Search by Date", "IndexSearch", "SubmissionDetails")</li>
+                            <li>@Html.ActionLink("Generic Search", "SearchByName", "SubmissionDetails")</li>
                         </ul>
                     </li>
                         </ul>

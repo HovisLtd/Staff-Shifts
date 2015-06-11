@@ -20,13 +20,23 @@ namespace StaffShifts.Controllers
         [Authorize(Roles = "Admin,SScanEdit")]
         public ActionResult Index(int? page)
         {
+            string DefaultSite = "999";
+            string UserIdentity = User.Identity.Name;
+            // Get the default site for the user
+            IQueryable<t_PTLStaff_Master_UserSites> userSites = db.t_PTLStaff_Master_UserSites
+                .Where(c => c.UserName == UserIdentity);
+            userSites = userSites.Take(1);
+            foreach (var DefaultSites in userSites)
+            {
+                DefaultSite = Convert.ToString(DefaultSites.UserSiteCode);
+            }
             DateTime SelectedDate = DateTime.Now.AddDays(-7);
             int pageSize = 10;
             int pageNumber = (page ?? 1);
             //return View(db.t_PTLStaff_Submit_Details.ToList()
             //            .OrderByDescending(x => x.SubmittedDate).ThenByDescending(x => x.SiteCode).ThenBy(x => x.PTLUserName));
             return View(db.t_PTLStaff_Submit_Details
-            .Where(x => x.SubmittedDate >= SelectedDate)
+            .Where(x => x.SiteCode.Equals(DefaultSite) && x.SubmittedDate >= SelectedDate)
             .OrderByDescending(x => x.SubmittedDate).ThenByDescending(x => x.SiteCode).ThenBy(x => x.PTLUserName).ToPagedList(pageNumber, pageSize));
         }
 
@@ -42,6 +52,16 @@ namespace StaffShifts.Controllers
             {
                 SubmitDate = currentFilter;
             }
+            string DefaultSite = "999";
+            string UserIdentity = User.Identity.Name;
+            // Get the default site for the user
+            IQueryable<t_PTLStaff_Master_UserSites> userSites = db.t_PTLStaff_Master_UserSites
+                .Where(c => c.UserName == UserIdentity);
+            userSites = userSites.Take(1);
+            foreach (var DefaultSites in userSites)
+            {
+                DefaultSite = Convert.ToString(DefaultSites.UserSiteCode);
+            }
 
             ViewBag.CurrentFilter = SubmitDate;
             //DateTime SelectedDate = DateTime.Now.AddDays(-7);
@@ -50,9 +70,36 @@ namespace StaffShifts.Controllers
             //return View(db.t_PTLStaff_Submit_Details.ToList()
             //            .OrderByDescending(x => x.SubmittedDate).ThenByDescending(x => x.SiteCode).ThenBy(x => x.PTLUserName));
             return View(db.t_PTLStaff_Submit_Details
-            .Where(x => x.SubmittedDate == SubmitDate)
+            .Where(x => x.SiteCode.Equals(DefaultSite) && x.SubmittedDate == SubmitDate)
             .OrderByDescending(x => x.SubmittedDate).ThenByDescending(x => x.SiteCode).ThenBy(x => x.PTLUserName).ToPagedList(pageNumber, pageSize));
         }
+
+        // GET: SubmissionDetails by name
+        [Authorize(Roles = "Admin,SScanEdit")]
+        public ActionResult SearchByName(string currentFilter, string Searchfield, int? page)
+        {
+            var sfield = Convert.ToString(Searchfield);
+            var cFilter = Convert.ToString(currentFilter);
+
+            if (sfield != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                sfield = cFilter;
+            }
+
+            ViewBag.CurrentFilter = sfield;
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            //return View(db.t_PTLStaff_Submit_Details.ToList()
+            //            .OrderByDescending(x => x.SubmittedDate).ThenByDescending(x => x.SiteCode).ThenBy(x => x.PTLUserName));
+            return View(db.t_PTLStaff_Submit_Details
+            .Where(x => x.SiteCode.Contains(sfield) || x.PTLUserName.Contains(sfield) || x.SubmittedBy.Contains(sfield))
+            .OrderByDescending(x => x.SubmittedDate).ThenByDescending(x => x.SiteCode).ThenBy(x => x.PTLUserName).ToPagedList(pageNumber, pageSize));
+        }
+
 
         // GET: SubmissionDetails/Details/5
         [Authorize(Roles = "Admin,SScanEdit")]

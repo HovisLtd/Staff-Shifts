@@ -18,7 +18,7 @@ namespace StaffShifts.Controllers
         public ActionResult Index()
         {
             var t_PTLStaff_Master_UserSites = db.t_PTLStaff_Master_UserSites.Include(t => t.v_PTLStaff_MasterData_Plants);
-            return View(t_PTLStaff_Master_UserSites.ToList());
+            return View(t_PTLStaff_Master_UserSites.OrderBy(x => x.UserName).ToList());
         }
 
         // GET: UserSites/Details/5
@@ -37,7 +37,7 @@ namespace StaffShifts.Controllers
         }
 
         // GET: UserSites/Create
-        [Authorize(Roles = "SScanEdit")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.UserSiteCode = new SelectList(db.v_PTLStaff_MasterData_Plants, "Plant", "PlantDesc");
@@ -49,7 +49,7 @@ namespace StaffShifts.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "SScanEdit")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "ID,UserName,UserSiteCode")] t_PTLStaff_Master_UserSites t_PTLStaff_Master_UserSites)
         {
             if (ModelState.IsValid)
@@ -64,7 +64,7 @@ namespace StaffShifts.Controllers
         }
 
         // GET: UserSites/Edit/5
-        [Authorize(Roles = "SScanEdit")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -85,7 +85,7 @@ namespace StaffShifts.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "SScanEdit")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "ID,UserName,UserSiteCode")] t_PTLStaff_Master_UserSites t_PTLStaff_Master_UserSites)
         {
             if (ModelState.IsValid)
@@ -99,7 +99,7 @@ namespace StaffShifts.Controllers
         }
 
         // GET: UserSites/Delete/5
-        [Authorize(Roles = "SScanEdit")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -117,7 +117,7 @@ namespace StaffShifts.Controllers
         // POST: UserSites/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "SScanEdit")]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             t_PTLStaff_Master_UserSites t_PTLStaff_Master_UserSites = db.t_PTLStaff_Master_UserSites.Find(id);
