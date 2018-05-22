@@ -60,8 +60,8 @@ namespace StaffShifts
             //   appSecret: "");
 
             app.UseGoogleAuthentication(
-                clientId: "955879399072-d1vd6ok8ca5f9scbots6qo46r508ni55.apps.googleusercontent.com",
-                clientSecret: "c2tUu0sIWz4GsNSBC9UWPHyh"
+                clientId: "***********.apps.googleusercontent.com",
+                clientSecret: "*********"
             );
         }
     }
