@@ -111,12 +111,12 @@ namespace StaffShifts.Models
             base.Seed(context);
         }
 
-        //Create User=Admin@Admin.com with password=Admin@123456 in the Admin role        
+        //Create User= with password in the Admin role        
         public static void InitializeIdentityForEF(ApplicationDbContext db) {
             var userManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var roleManager = HttpContext.Current.GetOwinContext().Get<ApplicationRoleManager>();
-            const string name = "admin@Hovis.co.uk";
-            const string password = "Admin@123456";
+            const string name = "*****";
+            const string password = "******";
             const string roleName = "Admin";
 
             //Create Role Admin if it does not exist
