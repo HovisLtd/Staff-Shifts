@@ -35,8 +35,8 @@ namespace StaffShifts
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions
             {
-                ClientId = "955879399072-d1vd6ok8ca5f9scbots6qo46r508ni55.apps.googleusercontent.com",
-                ClientSecret = "c2tUu0sIWz4GsNSBC9UWPHyh"
+                ClientId = "************.apps.googleusercontent.com",
+                ClientSecret = "*********"
             });
         }
     }
